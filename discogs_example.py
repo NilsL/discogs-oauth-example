@@ -99,14 +99,14 @@ def getAuthenticatedClient(consumer_key, consumer_secret):
 
 def downloadImage(client, url):
 				resp, content = client.request(url,headers={'User-Agent': user_agent})
-				localfileName = url.split('/')[-1]
+				localfileName = "imgs/" + url.split('/')[-1]
 				print ' == Authenticated API image request =='
 				print '    * response status      = {0}'.format(resp['status'])
 				print '    * saving image to disk = ' + localfileName
 
 				with open(localfileName,'w') as fh:
 						fh.write(content)
-				time.sleep(1)
+				#time.sleep(1)
 
 def getLabelUrls(label):
 				discogs.user_agent = 'HerrFahrstuhl + http://misuk.de'
@@ -118,7 +118,7 @@ thumbUrls = getLabelUrls('Zyx Records')
 
 client = getAuthenticatedClient('ViHiusPlcCojMFrnwDpD', 'HdvkWCamAPuctqgOkiZWmOmIQXiMYlnK')
 
-for i in range(0, 500):
+for i in range(0, 3000):
 				downloadImage(client, thumbUrls[i])
 
 #downloadImage(client,'http://api.discogs.com/image/L-27498-1397821411-3590.jpeg');
